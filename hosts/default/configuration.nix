@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
 
 ################################################## OPERATING SYSTEM BASICS ##################################################
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   # Bootloader.
@@ -38,18 +39,18 @@
   services = {
     xserver = {
       enable = true;                         # Whether to enable the X server.
-      desktopManager.plasma6.enable = true;  # Enable the Plasma 5 (KDE 5) desktop environment.
       xkb.layout = "it";                     # X keyboard layout
     };
 
     libinput.enable = true;  # Whether to enable libinput.
     printing.enable = true;  # Whether to enable printing support through the CUPS daemon.
+    desktopManager.plasma6.enable = true;  # Enable the Plasma 6 (KDE 6) desktop environment.
 
     displayManager = {
-      sddm.enable = true;    # Whether to enable sddm as the display manager.
+      sddm.enable = true;     # Whether to enable sddm as the display manager.
       autoLogin = {
         enable = false;       # Automatically log in as autoLogin.user
-        user = "frank";     # User to be used for the automatic login.
+        user = "frank";       # User to be used for the automatic login.
       };
     };
     onedrive.enable = true;
@@ -88,6 +89,7 @@
       libreoffice
 
       #school shii
+      ciscoPacketTracer8
       wireshark
       burpsuite
       ghidra
@@ -110,7 +112,7 @@
       file
       tree
       google-chrome
-      onedrive
+      onedriver
       neofetch
 
       #Hyprland
@@ -120,7 +122,6 @@
       dunst
       waybar
       swww
-      pcmanfm
 
       #programming utilities
       gdb
@@ -133,6 +134,7 @@
       nodejs
       vim
       neovim
+      #zed-editor disponibile dal 24.11
     ];
     sessionVariables = {
       # If cursor becomes invisible
@@ -163,7 +165,17 @@
       ll = "ls -l";
       ls = "ls --color=tty";
       rico = "sudo nixos-rebuild switch --flake /etc/nixos/#default";
-      mod = "sudo nano /etc/nixos/hosts/default/configuration.nix";
+      modc = "sudo nano /etc/nixos/hosts/default/configuration.nix";
+      modf = "sudo nano /etc/nixos/flake.nix";
+      modh = "sudo nano /etc/nixos/hosts/default/home.nix";
+    };
+  };
+
+  # Home Manager
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      frank = import ./home.nix;
     };
   };
 
@@ -184,7 +196,7 @@
   hardware = {
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
-    opengl.enable = true;
+    graphics.enable = true;
     nvidia.modesetting.enable = true;
   };
 
@@ -203,4 +215,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+  #system.stateVrsion = "24.11"; ricordati di cambiarlo il 22 novembre o dopo
 }

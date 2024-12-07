@@ -21,8 +21,7 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 - Installation Guide
   - [Basic Steps](#basic_steps)
   - [Flakes (Optional)](#6-flakes-optional)
-- Contributing
-- License
+- [Contributing](#contributing)
 ## Introduction
 NixOS is an operating system based on the Nix package manager, known for its declarative configuration and reliable dependency management. This repository includes:
 Configuration files for the main machine.
@@ -102,9 +101,6 @@ Contributions are welcome! If you have suggestions or want to add custom modules
 - Fork this repository.
 - Create a new branch.
 - Open a pull request with your changes.
-
-## Licence
-This project is licensed under the [MIT](LICENSE) license. Feel free to use and modify the files as needed.
 
 **Thank you for exploring my NixOS configuration!
 If you have questions or suggestions, feel free to open an Issue.**

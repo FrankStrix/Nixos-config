@@ -104,7 +104,7 @@ Create a new branch.
 Open a pull request with your changes.
 
 ## License
-This project is licensed under the [MIT](#https://github.com/FrankStrix/nix-config/tree/main?tab=MIT-1-ov-file) license. Feel free to use and modify the files as needed.
+This project is licensed under the [MIT](#MIT-1-ov-file) license. Feel free to use and modify the files as needed.
 
 **Thank you for exploring my NixOS configuration!
 If you have questions or suggestions, feel free to open an Issue.**

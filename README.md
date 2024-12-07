@@ -19,8 +19,8 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 - [Requirements](#requirements)
 - [Repository Structure](#repository-structure)
 - Installation Guide
-- Basic Steps
-- Flakes (Optional)
+  - Basic Steps
+  - Flakes (Optional)
 - Contributing
 - License
 ## Introduction

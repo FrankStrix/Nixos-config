@@ -34,7 +34,7 @@ To use this configuration, you will need:
 A machine compatible with NixOS.
 A USB stick or bootable drive with a NixOS image.
 Basic familiarity with the terminal and the Nix language.
-Repository Structure
+## Repository Structure
 Here is an overview of the repository structure:
 
 ```

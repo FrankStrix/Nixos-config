@@ -19,8 +19,8 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 - [Requirements](#requirements)
 - [Repository Structure](#repository-structure)
 - Installation Guide
-  - Basic Steps
-  - Flakes (Optional)
+  - [Basic Steps](basic_steps)
+  - [Flakes (Optional)](#6-flakes-optional)
 - Contributing
 - License
 ## Introduction
@@ -99,12 +99,9 @@ nixos-rebuild switch --flake .#
 ## Contributing
 Contributions are welcome! If you have suggestions or want to add custom modules:
 
-Fork this repository.
-Create a new branch.
-Open a pull request with your changes.
-
-## License
-This project is licensed under the [MIT](#MIT-1-ov-file) license. Feel free to use and modify the files as needed.
+- Fork this repository.
+- Create a new branch.
+- Open a pull request with your changes.
 
 **Thank you for exploring my NixOS configuration!
 If you have questions or suggestions, feel free to open an Issue.**

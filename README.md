@@ -91,7 +91,7 @@ Create a new branch.
 Open a pull request with your changes.
 
 ## License
-This project is licensed under the [MIT](#) license. Feel free to use and modify the files as needed.
+This project is licensed under the [MIT](#LICENCE) license. Feel free to use and modify the files as needed.
 
 **Thank you for exploring my NixOS configuration!
 If you have questions or suggestions, feel free to open an Issue.**

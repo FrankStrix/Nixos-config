@@ -12,7 +12,6 @@
   </a>
 </p>
 
-# **NixOS Configuration**
 Welcome to the repository for my NixOS configuration! This project contains the files and settings required to set up a custom NixOS system.
 
 ## Table of Contents

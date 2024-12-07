@@ -17,7 +17,7 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Requirements](#requirements)
-- [Repository Structure](#repository_Structure)
+- [Repository Structure](#repository-structure)
 - Installation Guide
 - Basic Steps
 - Flakes (Optional)
@@ -31,9 +31,9 @@ Custom modules for specific settings..
 ## Requirements
 To use this configuration, you will need:
 
-A machine compatible with NixOS.
-A USB stick or bootable drive with a NixOS image.
-Basic familiarity with the terminal and the Nix language.
+- A machine compatible with NixOS.
+- A USB stick or bootable drive with a NixOS image.
+- Basic familiarity with the terminal and the Nix language.
 ## Repository Structure
 Here is an overview of the repository structure:
 

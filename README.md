@@ -37,7 +37,7 @@ To use this configuration, you will need:
 Here is an overview of the repository structure:
 
 ```
-etc/nixos/.
+etc/nixos/
 |
 ├── modules/
 |   ├── nixos/

@@ -19,7 +19,7 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 - [Requirements](#requirements)
 - [Repository Structure](#repository-structure)
 - Installation Guide
-  - [Basic Steps](basic_steps)
+  - [Basic Steps](#basic_steps)
   - [Flakes (Optional)](#6-flakes-optional)
 - Contributing
 - License
@@ -102,6 +102,9 @@ Contributions are welcome! If you have suggestions or want to add custom modules
 - Fork this repository.
 - Create a new branch.
 - Open a pull request with your changes.
+
+## Licence
+This project is licensed under the [MIT](LICENSE) license. Feel free to use and modify the files as needed.
 
 **Thank you for exploring my NixOS configuration!
 If you have questions or suggestions, feel free to open an Issue.**

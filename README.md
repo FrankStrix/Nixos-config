@@ -39,15 +39,15 @@ Here is an overview of the repository structure:
 ```
 etc/nixos/.
 |
-├── modules/                 # Custom modules
+├── modules/
 |   ├── nixos/
 │   |  ├── configuration.nix             # Main system configuration
 |   |  └── hardware-configuration.nix    # Auto-generated hardware configuration
 |   ├── home-manager/
 |   |  └── home.nix                      # Home manager file configuration
-├── flake.nix                # Nix Flakes configuration (optional)
-├── flake.lock               # Flake lock file
-└── README.md                # This file
+├── flake.nix                            # Nix Flakes configuration (optional)
+├── flake.lock                           # Flake lock file
+└── README.md                            # This file
 ```
 
 ## Main Files

@@ -1,31 +1,32 @@
 { inputs, config, pkgs, ... }:
 {
+  ##################################################
+  # SYSTEM CONFIGURATION
+  ##################################################
 
-################################################## OPERATING SYSTEM BASICS ##################################################
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-    ];
+  # Imports
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
-  # Bootloader.
-  boot = {
-    loader = {
-      systemd-boot.enable = true;       # Whether to enable the systemd-boot (formerly gummiboot) EFI boot manager.
-      efi.canTouchEfiVariables = true;  # Whether the installation process is allowed to modify EFI boot variables.
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
+  # Bootloader
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Enable networking
+  # Networking
   networking = {
-    networkmanager.enable = true; # Whether to use NetworkManager to obtain an IP address and other configuration for all network interfaces that are not manually configured
-    hostName = "nixos";           # Define your hostname.
-    # wireless.enable = true;     # Enables wireless support via wpa_supplicant.
-    extraHosts = ''10.129.199.47 unika.htb '';
+    networkmanager.enable = true;
+    hostName = "nixos";
+    extraHosts = ''
+      10.129.199.47 unika.htb
+    '';
   };
 
-  # Set your time zone.
+  # Localization
   time.timeZone = "Europe/Rome";
   i18n.extraLocaleSettings = {
     defaultLocale = "en_US.UTF-8";
@@ -40,57 +41,66 @@
     LC_TIME = "it_IT.UTF-8";
   };
 
+  # Security
+  security.rtkit.enable = true;
+
+  ##################################################
+  # DISPLAY AND AUDIO
+  ##################################################
+
   services = {
     xserver = {
-      enable = true;                         # Whether to enable the X server.
-      xkb.layout = "it";                     # X keyboard layout
+      enable = true;
+      xkb.layout = "it";
     };
+    libinput.enable = true;
+    printing.enable = true;
 
-    libinput.enable = true;  # Whether to enable libinput.
-    printing.enable = true;  # Whether to enable printing support through the CUPS daemon.
-    desktopManager.plasma6.enable = true;  # Enable the Plasma 6 (KDE 6) desktop environment.
-
-    displayManager = {
-      sddm.enable = true;     # Whether to enable sddm as the display manager.
-      autoLogin = {
-        enable = false;       # Automatically log in as autoLogin.user
-        user = "frank";       # User to be used for the automatic login.
+    # Pipewire configuration
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      jack.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
       };
     };
-    onedrive.enable = true;
-    pipewire = {
-      enable = true;             # Whether to enable PipeWire service.
-      pulse.enable = true;       # Whether to enable PulseAudio server emulation.
-      jack.enable = true;        # Whether to enable JACK audio emulation.
-      alsa = {
-        enable = true;           # Whether to enable ALSA support.
-        support32Bit = true;     # Whether to enable 32-bit ALSA support on 64-bit systems.
+
+    # Desktop environment
+    desktopManager.plasma6.enable = true;
+    displayManager = {
+      enable = true;
+      autoLogin = {
+        enable = false;
+        user = "frank";
       };
     };
   };
 
-  console.keyMap = "it2"; # Configure console keymap
-  security.rtkit.enable = true;
+  console.keyMap = "it2";
 
+  ##################################################
+  # PACKAGES
+  ##################################################
 
-################################################## PACKAGES ##################################################
-
-  # Define a user account.
+  # User configuration
   users.users.frank = {
     isNormalUser = true;
-    description = "frank";
+    description = "Frank";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      #ides
+      # IDEs
       vscode-fhs
       jetbrains.idea-ultimate
 
-      #apps
+      # Applications
       vesktop
       spotify
       libreoffice
+      firefox
 
-      #school shii
+      # School and utilities
       ciscoPacketTracer8
       wireshark
       burpsuite
@@ -99,108 +109,108 @@
     ];
   };
 
-  #The set of packages that appear in /run/current-system/sw.
-  #These packages are automatically available to all users,
-  #and are automatically updated every time you rebuild the system configuration
-  environment = {
-    systemPackages = with pkgs; [
-      # Nix packages
-      home-manager
+  # System-wide packages
+  environment.systemPackages = with pkgs; [
+    # Utilities
+    home-manager
+    git
+    github-desktop
+    wget
+    file
+    tree
+    google-chrome
+    onedriver
+    neofetch
+    _7zz
+    inetutils
+    openvpn
+    curl
 
-      # Utilities
-      git
-      github-desktop
-      wget
-      file
-      tree
-      google-chrome
-      onedriver
-      neofetch
-      _7zz
-      inetutils
-      openvpn
-      curl
+    # CTF tools
+    sherlock
+    nmap
+    putty
+    mysql84
+    gobuster
+    pwntools
 
-      # Ctf utils
-      sherlock
-      nmap
-      putty
-      mysql84
-      gobuster
-      pwntools
+    # Hyprland ecosystem
+    #hyprland            # Hyprland window manager
+    #rofi                # Application launcher
+    #waybar              # Status bar
+    #dunst               # Notification daemon
+    #kitty               # Terminal emulator
+    #xdg-desktop-portal  # Portal for Wayland apps
+    #xdg-desktop-portal-gtk
+    #wl-clipboard        # Clipboard manager for Wayland
+    #grim                # Screenshot tool
+    #slurp               # Region selector for screenshots
+    #swww                # Wallpaper manager for Wayland
 
-      # Hyprland
-      hyprland
-      rofi
-      xdg-desktop-portal-gtk
-      dunst
-      waybar
-      swww
+    # Programming utilities
+    gdb
+    kitty
+    cool-retro-term
+    python3Full
+    gcc
+    jdk23
+    flutter
+    nodejs
+    vim
+    neovim
+    zed-editor
+    sass
 
-      # Programming utilities
-      gdb
-      kitty
+    # System configuration tools
+    zip
+    unzip
+    lolcat
 
-      # Programming stuff
-      python3Full
-      gcc
-      jdk23
-      flutter
-      nodejs
-      vim
-      neovim
-      zed-editor
-      sass
-      
-      # System conf pkgs
-      zip
-      unzip
-      lolcat
+    # Zsh and plugins
+    zsh
+    autojump
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+  ];
 
-      # Zsh
-      zsh
-      autojump
-      zsh-syntax-highlighting
-      zsh-autosuggestions
-    ];
-    sessionVariables = {
-      # If cursor becomes invisible
-      #WLR_NO_HARDWARE_CURSORS = "1";
-      # Hint electron apps to use wayland
-      NIXOS_OZONE_WL = "1";
-    };
+  # Environment variables
+#  environment.sessionVariables = {
+#    XDG_SESSION_TYPE = "wayland";
+#    XDG_CURRENT_DESKTOP = "Hyprland";
+#    WLR_NO_HARDWARE_CURSORS = "1";
+#    QT_QPA_PLATFORM = "wayland";
+#    MOZ_ENABLE_WAYLAND = "1";
+#    NIXOS_OZONE_WL = "1";
+#  };
+
+  ##################################################
+  # HYPRLAND CONFIGURATION
+  ##################################################
+
+#  programs.hyprland = {
+#    enable = true;
+#    xwayland.enable = true;
+#  };
+
+  # Aliases for shell
+  programs.bash.shellAliases = {
+    l = "ls -alh";
+    ll = "ls -l";
+    ls = "ls --color=tty";
+    rico = "sudo nixos-rebuild switch --flake /etc/nixos/#frank";	# Rebuild NixOS
+    modc = "sudo nano /etc/nixos/modules/nixos/configuration.nix";	# Modify configuration.nix
+    modf = "sudo nano /etc/nixos/flake.nix";				# Modify flake.nix
+    modh = "sudo nano /etc/nixos/modules/home-manager/home.nix";	# Modify home.nix
+    upda = "sudo nix-channel --update nixos; rico";			# Upgrade nix-channel
+    grbg = "sudo nix-collect-garbage -d";				# Garbage coollector
+    hypr = "hyprctl reload"; 						# Reaload hypr config
   };
 
+  ##################################################
+  # ADDITIONAL SERVICES
+  ##################################################
 
-################################################## ADDITIONAL SERVICES ##################################################
-
-  programs = {
-    firefox.enable = true;  # Whether to enable the Firefox web browser.
-    nix-ld = {
-      enable = true;        # Whether to enable nix-ld
-      libraries = with pkgs; [
-        xorg.libX11
-        libGL
-      ];
-    };
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-    bash.shellAliases = {
-      l = "ls -alh";
-      ll = "ls -l";
-      ls = "ls --color=tty";
-      rico = "sudo nixos-rebuild switch --flake /etc/nixos/#frank";
-      modc = "sudo nano /etc/nixos/modules/nixos/configuration.nix";
-      modf = "sudo nano /etc/nixos/flake.nix";
-      modh = "sudo nano /etc/nixos/modules/home-manager/home.nix";
-      upda = "sudo nix-channel --update nixos; rico";
-      grbg = "sudo nix-collect-garbage -d";
-    };
-  };
-
-  # Home Manager
+  # Enable Home Manager
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -208,57 +218,41 @@
     };
   };
 
-  # Allow unfree packages
+  # Unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  #######
-  # Nix #
-  #######
-  nix = {
-    settings = {
-      # Enable nix flakes
-      experimental-features = ["nix-command" "flakes"];
-      # Optimize store automatically
-      auto-optimise-store = true;
-    };
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
-  # Enable automatic upgrades
+  # Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 ];
+  };
+
+  ##################################################
+  # SYSTEM STATE AND UPDATES
+  ##################################################
+
+  # State version
+  system.stateVersion = "24.05";
+
+  # Auto upgrades
   system.autoUpgrade = {
     enable = true;
     allowReboot = true;
     channel = "https://nixos.org/channels/nixos-24.11";
   };
 
-  # Enable bluetooth
-  hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-    graphics.enable = true;
-    nvidia.modesetting.enable = true;
+  ##################################################
+  # NIX SETTINGS
+  ##################################################
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
   };
-
-  # Enable firewall
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 80 443 ];
-  };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    fira-code                     # Most Stuff (kitty, GTK, etc.)
-    font-awesome                  # Something on the System
-    nerdfonts                     # Gotta Get Em All
-    powerline-fonts               # Neovim etc.        
-  ];
-
-
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
 }

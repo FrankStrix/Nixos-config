@@ -1,37 +1,26 @@
 { config, pkgs, ... }:
+
 {
-  # Informazioni sull'utente e sulla directory da gestire
-  home = {
-    username = "frank";
-    homeDirectory = "/home/frank";
-  };
+  home.stateVersion = "24.05";  # Don't change without checking release notes
 
-  # Versione di Home Manager compatibile con questa configurazione
-  home.stateVersion = "24.05"; # Non cambiare senza controllare le note di rilascio
-
-  # Pacchetti da installare nell'ambiente utente
+  # User packages
   home.packages = [
-    # Esempio di aggiunta del comando 'hello'
-    pkgs.hello
-
-    # Esempio di script shell personalizzato
-    (pkgs.writeShellScriptBin "my-hello" ''
-      echo "Hello, ${config.home.username}!"
-    '')
+    pkgs.vscodium
+    pkgs.git
+    pkgs.kitty
+    pkgs.neovim
+    pkgs.zsh
+    pkgs.autojump
+    pkgs.zsh-syntax-highlighting
+    pkgs.zsh-autosuggestions
   ];
 
-  # Gestione dei file di configurazione (dotfiles)
-  home.file = {
-  };
-
-  # Variabili di ambiente
   home.sessionVariables = {
     EDITOR = "neovim";
     BROWSER = "google-chrome";
     TERMINAL = "kitty";
   };
 
-  # Configurazione dei programmi
   programs = {
     git = {
       enable = true;
@@ -51,10 +40,6 @@
       };
     };
 
-   # hyprland = {
-   #   enable = true;
-   # };
-
     vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -65,6 +50,5 @@
     };
   };
 
-  # Permette a Home Manager di installare e gestire sé stesso
   programs.home-manager.enable = true;
 }

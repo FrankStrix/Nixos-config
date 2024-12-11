@@ -41,13 +41,27 @@ etc/nixos/
 |
 ├── modules/
 |   ├── nixos/
-│   |  ├── configuration.nix             # Main system configuration
-|   |  └── hardware-configuration.nix    # Auto-generated hardware configuration
+|   |   ├── modules/                      # All the modules for the configuration
+|   |   |  ├── aliases.nix                # The aliases of the bash
+|   |   |  ├── bootloader.nix
+|   |   |  ├── default.nix                # All this modules imported in this file
+|   |   |  ├── display.nix
+|   |   |  ├── env-var.nix
+|   |   |  ├── hyprland.nix               # Enable hyprland
+|   |   |  ├── localization.nix
+|   |   |  ├── networking.nix
+|   |   |  ├── packages.nix               # All the installed packages
+|   |   |  ├── security.nix
+|   |   |  ├── sound.nix
+|   |   |  ├── users.nix                  # Configuration for users, mine in this case
+│   |   ├── configuration.nix             # Main system configuration
+|   |   └── hardware-configuration.nix    # Auto-generated hardware configuration
 |   ├── home-manager/
-|   |  └── home.nix                      # Home manager file configuration
-├── flake.nix                            # Nix Flakes configuration (optional)
-├── flake.lock                           # Flake lock file
-└── README.md                            # This file
+|   |  └── home.nix                       # Home manager file configuration
+├── flake.nix                             # Nix Flakes configuration (optional)
+├── flake.lock                            # Flake lock file
+├── README.md                             # This file
+└── LICENCE                               # Licence of this repo
 ```
 
 ## Main Files

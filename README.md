@@ -82,7 +82,7 @@ cd nixos-configuration
 ```
 ### 3. Link Configuration Files:
 Replace or integrate the existing configuration files with those from this repository:
-> ### Important 🚨 
+> ### IMPORTANT 🚨 
 >  Remeber to change all users.frank options or it will change your user in frank without a password!!
 ```
 sudo cp -r modules /etc/nixos/

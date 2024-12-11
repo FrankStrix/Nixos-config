@@ -82,6 +82,8 @@ cd nixos-configuration
 ```
 ### 3. Link Configuration Files:
 Replace or integrate the existing configuration files with those from this repository:
+> ### Important 🚨 
+>  Remeber to change all users.frank options or it will change your user in frank without a password!!
 ```
 sudo cp -r modules /etc/nixos/
 sudo cp flake.nix /etc/nixos/
@@ -95,8 +97,6 @@ nixos-rebuild switch --flake /etc/nixos/#
 ```
 sudo reboot
 ```
-> ### Important 🚨 
->  Remeber to change all users.frank options or it will change your user in frank without a password!!
 ## Contributing
 Contributions are welcome! If you have suggestions or want to add custom modules:
 

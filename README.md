@@ -95,7 +95,7 @@ nixos-rebuild switch --flake /etc/nixos/#
 ```
 sudo reboot
 ```
-> 🚨 ### Important 🚨 
+> ### Important 🚨 
 >  Remeber to change all users.frank options or it will change your user in frank without a password!!
 ## Contributing
 Contributions are welcome! If you have suggestions or want to add custom modules:

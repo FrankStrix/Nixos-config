@@ -71,7 +71,7 @@ etc/nixos/
 
 ### 1. install NixOS:
 
-Download the NixOS image from the official [website](#https://nixos.org/).
+Download the NixOS image from the official [website](https://nixos.org/).
 Follow the installation guide to set up your base system.
 
 ### 2. Clone this Repository:

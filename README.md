@@ -18,9 +18,7 @@ Welcome to the repository for my NixOS configuration! This project contains the 
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Repository Structure](#repository-structure)
-- Installation Guide
-  - [Basic Steps](#basic-steps)
-  - [Flakes (Optional)](#6-flakes-optional)
+- [Installation Guide](#installation-guide)
 - [Contributing](#contributing)
 ## Introduction
 NixOS is an operating system based on the Nix package manager, known for its declarative configuration and reliable dependency management. This repository includes:
@@ -71,7 +69,7 @@ etc/nixos/
 - ```flake.nix (optional)```: Configuration for Nix Flakes support.
 # Installation Guide
 
-## Basic Steps
+## Installation Guide
 
 ### 1. install NixOS:
 
@@ -81,33 +79,23 @@ Follow the installation guide to set up your base system.
 ### 2. Clone this Repository:
 
 ```
-git clone https://github.com/your-username/nixos-configuration.git
+git clone https://github.com/FrankStrix/Nixos-config nixos-configuration
 cd nixos-configuration
 ```
 ### 3. Link Configuration Files:
 Replace or integrate the existing configuration files with those from this repository:
 ```
-sudo cp configuration.nix /etc/nixos/
-sudo cp hardware-configuration.nix /etc/nixos/
+sudo cp -r modules /etc/nixos/
+sudo cp flake.nix /etc/nixos/
+sudo cp flake.lock /etc/nixos/
 ```
 ### 4. Rebuild the System:
 ```
-sudo nixos-rebuild switch
+nixos-rebuild switch --flake /etc/nixos/#
 ```
 ### 5. Reboot the System:
 ```
 sudo reboot
-```
-### 6. Flakes (Optional)
-If you’re using Nix Flakes, enable them by adding this line to /etc/nixos/configuration.nix:
-```
-nix = {
-  experimental-features = [ "nix-command" "flakes" ];
-};
-```
-Then, rebuild with:
-```
-nixos-rebuild switch --flake .#
 ```
 ## Contributing
 Contributions are welcome! If you have suggestions or want to add custom modules:

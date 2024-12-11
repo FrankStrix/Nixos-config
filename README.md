@@ -69,8 +69,6 @@ etc/nixos/
 - ```flake.nix (optional)```: Configuration for Nix Flakes support.
 # Installation Guide
 
-## Installation Guide
-
 ### 1. install NixOS:
 
 Download the NixOS image from the official [website](#https://nixos.org/).

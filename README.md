@@ -53,7 +53,7 @@ etc/nixos/
 |   |   |  ├── packages.nix               # All the installed packages
 |   |   |  ├── security.nix
 |   |   |  ├── sound.nix
-|   |   |  ├── users.nix                  # Configuration for users, mine in this case
+|   |   |  └── users.nix                  # Configuration for users, mine in this case
 │   |   ├── configuration.nix             # Main system configuration
 |   |   └── hardware-configuration.nix    # Auto-generated hardware configuration
 |   ├── home-manager/

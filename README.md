@@ -39,27 +39,52 @@ etc/nixos/
 |
 ├── modules/
 |   ├── nixos/
-|   |   ├── modules/                      # All the modules for the configuration
-|   |   |  ├── aliases.nix                # The aliases of the bash
-|   |   |  ├── bootloader.nix
-|   |   |  ├── default.nix                # All this modules imported in this file
-|   |   |  ├── display.nix
-|   |   |  ├── env-var.nix
-|   |   |  ├── hyprland.nix               # Enable hyprland
-|   |   |  ├── localization.nix
-|   |   |  ├── networking.nix
-|   |   |  ├── packages.nix               # All the installed packages
-|   |   |  ├── security.nix
-|   |   |  ├── sound.nix
-|   |   |  └── users.nix                  # Configuration for users, mine in this case
-│   |   ├── configuration.nix             # Main system configuration
-|   |   └── hardware-configuration.nix    # Auto-generated hardware configuration
+|   |   ├── modules/                       # NixOS configuration modules
+|   |   |  ├── aliases.nix                 # The aliases of the bash
+|   |   |  ├── bootloader.nix              # Bootloader configuration module
+|   |   |  ├── default.nix                 # All this modules imported in this file
+|   |   |  ├── display.nix                 # Display configuration module
+|   |   |  ├── env-var.nix                 # Envarioment variables configuration module
+|   |   |  ├── hyprland.nix                # Enable hyprland
+|   |   |  ├── localization.nix            # Module for the localization
+|   |   |  ├── networking.nix              # Networking configuration module
+|   |   |  ├── packages.nix                # All the installed packages
+|   |   |  ├── security.nix                # Security configuration module
+|   |   |  ├── sound.nix                   # Sound configuration module
+|   |   |  └── users.nix                   # Configuration for users, mine in this case
+│   |   ├── configuration.nix              # Main system configuration
+|   |   └── hardware-configuration.nix     # Auto-generated hardware configuration
 |   ├── home-manager/
-|   |  └── home.nix                       # Home manager file configuration
-├── flake.nix                             # Nix Flakes configuration (optional)
-├── flake.lock                            # Flake lock file
-├── README.md                             # This file
-└── LICENCE                               # Licence of this repo
+|   |   ├── home-modules/                  # Home manager modules
+|   |   |   ├── hyrpland/                  # Hyprland window manager config modules
+|   |   |   |   ├── config.nix             # Hyprland configuration module
+|   |   |   |   ├── default.nix            # Imports of all the module in the current directory
+|   |   |   |   ├── hyprland.nix           # Home packages and configuration of Hyprland
+|   |   |   |   ├── hyprlock.nix           # Hyprlock for Hyprland configuration module
+|   |   |   |   └── variables.nix          # Home session variables for hyprland
+|   |   |   ├── swaync/                    # Notification deamon with a GTK GUI for notifications
+|   |   |   |   ├── config.json            # Swaync configuration module
+|   |   |   |   ├── style.css              # Swaync style configuration module
+|   |   |   |   └── swaync.nix             # Imports for all the modules in the current directory
+|   |   |   ├── waybar/                    # Waybar for Hyprland config modules
+|   |   |   |   ├── default.nix            # Imports for all the modules in the current directory
+|   |   |   |   ├── setting.nix            # Waybar configuration module
+|   |   |   |   ├── style.nix              # Waybar style configuration module
+|   |   |   |   └── waybar.nix             # Module that enables waybar
+|   |   |   ├── default.nix                # File for importing all modules in the home.nix file
+|   |   |   ├── git.nix                    # Git configuration module
+|   |   |   ├── gtk.nix                    # GTK configuration module
+|   |   |   ├── kitty.nix                  # Kitty terminal configuration module
+|   |   |   ├── pakcages.nix               # Home packages module
+|   |   |   ├── rofi.nix                   # Rofi window switcher & runner configuration module
+|   |   |   ├── session-var.nix            # Home session variables module
+|   |   |   ├── swaylock.nix               # Swaylock for Hyprland configuration module
+|   |   |   └── vscode,nix                 # Vscode configuration module
+|   |   └── home.nix                       # Home manager file configuration
+├── flake.nix                              # Nix Flakes configuration (optional)
+├── flake.lock                             # Flake lock file
+├── README.md                              # This file
+└── LICENCE                                # Licence of this repo
 ```
 
 ## Main Files

@@ -91,7 +91,7 @@ etc/nixos/
 - ```configuration.nix```: The main file defining system behavior.
 - ```hardware-configuration.nix```: Auto-generated during NixOS installation, contains hardware-specific settings.
 - ```home.nix```: Home manager configuration for declarative configurations
-- ```flake.nix (optional)```: Configuration for Nix Flakes support.
+- ```flake.nix```: Configuration for Nix Flakes support.
 # Installation Guide
 
 ### 1. install NixOS:
